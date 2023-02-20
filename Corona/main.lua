@@ -23,7 +23,7 @@ function cookieListener(event)
 end
 
 local webView = native.newWebView( display.contentCenterX, display.contentCenterY-100, 320, 280 )
-webView:request( "https://charlestyrwhitt.platop.us/" )
+webView:request( "https://apple.com/" )
 local getCookies = widget.newButton( {
         x = display.contentCenterX,
         y = display.contentCenterY + 200,
@@ -32,7 +32,7 @@ local getCookies = widget.newButton( {
         label = "getWebviewCookie",
         onEvent = function ( e )
                 if (e.phase == "ended") then
-                        cookieCutter.getWebviewCookie("charlestyrwhitt.platop.us", "FS2SSID", cookieListener)
+                        cookieCutter.getWebviewCookie("apple.com", "GEO", cookieListener)
                 end
         end
 })
