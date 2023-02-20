@@ -2,6 +2,8 @@
 
 Solar2D plugin to get a cookie from webview for iOS, MacOS/Sim and Android
 
+Thanks to Scott Harrison @scottrules44 for help with the Apple versions!
+
 cookieCutter.getWebviewCookie("domainName", "cookieName", listener)
 
 To be consistent across supported platforms, the function triggers an event in a given listener and returns:
