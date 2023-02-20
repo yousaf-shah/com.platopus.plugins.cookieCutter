@@ -1,38 +1,32 @@
-local cookieCutter = require("plugin.cookieCutter")
-local widget = require("widget")
-local json = require("json")
-local bg = display.newRect( display.contentCenterX, display.contentCenterY, display.actualContentWidth, display.actualContentHeight )
-bg:setFillColor( 0,.5,0 )
+-- Basic Example to get the 'StrictCookie' cookie from the testing site https://samesitetest.com/cookies/set
+
+-- The plugin does not make any requests to the site.
+-- You must have a Native Webview open pointed to a URL at this domain.
+
+local cookieCutter = require ( "plugin.cookieCutter" )
+local domainName = "samesitetest.com"
+local domainTestUrl = "https://samesitetest.com/cookies/set"
+local cookieName = "StrictCookie"
 
 function cookieListener(event)
-
-        if event.name == "cookieCutter" then
-
-                print("COOKIE: found = "..tostring(event.cookieFound))
-
-                if event.cookieFound == true then
-
-                        print("COOKIE: domain = "..event.domainName)
-                        print("COOKIE: cookie = "..event.cookieName)
-                        print("COOKIE: value = "..event.cookieValue)
-                        native.showAlert(event.domainName,event.cookieName .. " = " .. event.cookieValue,{"OK"})
-
-                end
-        end
-
+     if event.name == "cookieCutter" then
+          print("COOKIE: found = " .. tostring(event.cookieFound))
+          if event.cookieFound == true then
+               print("COOKIE: domain = "..event.domainName)
+               print("COOKIE: cookie = "..event.cookieName)
+               print("COOKIE: value = "..event.cookieValue)
+               native.showAlert(event.domainName,event.cookieName .. " = " .. event.cookieValue,{"OK"})
+          end
+     end
 end
 
-local webView = native.newWebView( display.contentCenterX, display.contentCenterY-100, 320, 280 )
-webView:request( "https://apple.com/" )
-local getCookies = widget.newButton( {
-        x = display.contentCenterX,
-        y = display.contentCenterY + 200,
-        id = "getWebviewCookie",
-        labelColor = { default={ 1, 1, 1 }, over={0, 0, 0, 0.5 } },
-        label = "getWebviewCookie",
-        onEvent = function ( e )
-                if (e.phase == "ended") then
-                        cookieCutter.getWebviewCookie("apple.com", "GEO", cookieListener)
-                end
-        end
-})
+local function webListener( event )
+     if event.type ~= nil and event.type == "loaded" then
+          print( "WEBVIEW: Page Loaded - Fetching Cookie")
+          cookieCutter.getWebviewCookie(domainName, cookieName, cookieListener)
+     end
+end
+
+local webView = native.newWebView( display.contentCenterX, display.contentCenterY, 320, 480 )
+webView:addEventListener( "urlRequest", webListener )
+webView:request( domainTestUrl )
