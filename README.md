@@ -1,9 +1,7 @@
 # CookieCutter-Plugin
 
-Solar2D plugin to get a cookie from webview for iOS or MacOS/Sim
+Solar2D plugin to get a cookie from webview for iOS, MacOS/Sim and Android
 
-
-Please see `demo` project to get started
 
 Basic Api Guide
 ```
