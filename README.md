@@ -19,25 +19,33 @@ To be consistent across supported platforms, the function triggers an event in a
 -- The plugin does not make any requests to the site.
 -- You must have a Native Webview open pointed to a URL at this domain.
 
-local domainName = "apple.com"
-local cookieName = "geo"
+local cookieCutter = require ( "plugin.cookieCutter" )
+local domainName = "samesitetest.com"
+local domainTestUrl = "https://samesitetest.com/cookies/set"
+local cookieName = "StrictCookie"
 
 function cookieListener(event)
-     if event.cookieFound then
-          print ("Cookie Found for domain " .. event.domainName)
-          print ("Cookie " .. event.cookieName .. " = " .. event.cookieValue)
+     if event.name == "cookieCutter" then
+          print("COOKIE: found = " .. tostring(event.cookieFound))
+          if event.cookieFound == true then
+               print("COOKIE: domain = "..event.domainName)
+               print("COOKIE: cookie = "..event.cookieName)
+               print("COOKIE: value = "..event.cookieValue)
+               native.showAlert(event.domainName,event.cookieName .. " = " .. event.cookieValue,{"OK"})
+          end
      end
 end
 
 local function webListener( event )
-    if event.type ~= nil and event.type == "loaded" then
-        print( "Page Loaded - Fetching Cookie")
-        cookieCutter.getWebviewCookie(domainName, cookieName, cookieListener)
-    end
+     if event.type ~= nil and event.type == "loaded" then
+          print( "WEBVIEW: Page Loaded - Fetching Cookie")
+          cookieCutter.getWebviewCookie(domainName, cookieName, cookieListener)
+     end
 end
 
 local webView = native.newWebView( display.contentCenterX, display.contentCenterY, 320, 480 )
-webView:request( "https://" .. domainName .. "/" )
+webView:addEventListener( "urlRequest", webListener )
+webView:request( domainTestUrl )
 
 
 ````
