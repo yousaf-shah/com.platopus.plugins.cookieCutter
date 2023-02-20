@@ -14,7 +14,7 @@ To be consistent across supported platforms, the function triggers an event in a
 
 
 ```lua
--- Basic Example to get the 'geo' cookie from https://apple.com/
+-- Basic Example to get the 'StrictCookie' cookie from the testing site https://samesitetest.com/cookies/set
 
 -- The plugin does not make any requests to the site.
 -- You must have a Native Webview open pointed to a URL at this domain.
