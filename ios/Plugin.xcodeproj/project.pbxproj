@@ -42,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A484111A15114F700074BD57 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A4E253B6166D6FB300DCDC2C /* libplugin_cookieCutter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A447B609165D72A6009EA762 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -51,29 +59,21 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
-		A484110E15114F700074BD57 = {
-			isa = PBXGroup;
-			children = (
-				A447B609165D72A6009EA762 /* Source */,
-				F54A40C01EE083A300AF417D /* CoronaNative */,
-				A484111A15114F700074BD57 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A484111A15114F700074BD57 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A4E253B6166D6FB300DCDC2C /* libplugin_cookieCutter.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		F54A40C01EE083A300AF417D /* CoronaNative */ = {
 			isa = PBXGroup;
 			children = (
 				F572F81A1EE0705B001BC814 /* CoronaNative.xcconfig */,
 			);
 			name = CoronaNative;
+			sourceTree = "<group>";
+		};
+		A484110E15114F700074BD57 = {
+			isa = PBXGroup;
+			children = (
+				A484111A15114F700074BD57 /* Products */,
+				A447B609165D72A6009EA762 /* Source */,
+				F54A40C01EE083A300AF417D /* CoronaNative */,
+			);
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
